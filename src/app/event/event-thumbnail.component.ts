@@ -4,7 +4,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   // tslint:disable-next-line:component-selector
   selector: 'event-thumbnail',
   template: `
-    <div class="well hoverwell thumbnail">
+    <div [routerLink]="['/event', event.id]" class="well hoverwell thumbnail">
       <h2>{{ event?.name }}</h2>
       <div>Date: {{ event?.date }}</div>
       <div [ngStyle]="getStartTimeStyle()"
