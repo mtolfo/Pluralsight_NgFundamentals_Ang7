@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../event.service';
 
 @Component({
-  selector: 'app-nav-bar',
+  // tslint:disable-next-line:component-selector
+  selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styles: [`
+    .nav.navbar-nav {font-size: 15px;}
+    #searchForm {margin-right: 100px;}
+    @media (max-width: 1200px) {#searchForm {display: none}}
+  `]
 })
+
 export class NavBarComponent implements OnInit {
+  constructor() { }
 
-  constructor(private eventService: EventService) { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }
