@@ -1,18 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {
+EventListComponent,
+EventThumbnailComponent,
+EventDetailsComponent,
+CreateEventComponent,
+EventRouteActivator,
+EventListResolver
+} from './event/index';
+
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { EventListComponent } from './event/event-list.component';
-import { EventThumbnailComponent } from './event/event-thumbnail.component';
-import { EventDetailsComponent } from './event/event-details/event-details.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
-import { CreateEventComponent } from './event/create-events.component';
 import { Error404Component } from './errors/404.component';
 import { EventService } from './event.service';
-import { EventRouteActivator } from './event/event-details/event-route-activator.service';
-import { EventListResolver } from './event/event-list-resolver.service';
+
+
 
 @NgModule({
   declarations: [
