@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
 import { ActivatedRoute } from '@angular/router';
+import { IEvent } from './shared';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -19,7 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EventListComponent implements OnInit {
 
-  events: any;
+  events: IEvent[];
 
   constructor(private eventService: EventService, private route: ActivatedRoute) {}
   ngOnInit() {
