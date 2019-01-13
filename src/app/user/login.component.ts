@@ -12,7 +12,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class LoginComponent implements OnInit {
   @Input() userName: string;
   @Input() password: string;
-  mouseoverLogin: boolean;
+  @Input() mouseoverLogin: boolean;
 
   constructor(private authService: AuthService, private router: Router) {}
   ngOnInit() {}
