@@ -30,7 +30,7 @@
       <label for="password">Password:</label>
       <em
         *ngIf="
-          !loginForm.password?.valid &&
+          !loginForm.controls.password?.valid &&
           (!loginForm.controls.password?.untouched || mouseoverLogin)
         "
         >Required</em
