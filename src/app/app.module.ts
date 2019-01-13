@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
 import { EventService } from './event.service';
+import { AuthService } from './user/auth.service';
 
 
 
@@ -33,7 +34,11 @@ import { EventService } from './event.service';
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [EventService, EventRouteActivator, EventListResolver,
+  providers: [
+    EventService,
+    EventRouteActivator,
+    AuthService,
+    EventListResolver,
   {
     provide: 'canDeactivateCreateEvent',
     useValue: checkDirtyState
