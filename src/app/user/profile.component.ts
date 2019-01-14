@@ -1,31 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  template: `
-  <div>
-  <h1>Edit Your Profile </h1>
-  <hr>
-  <div class="col-md-4">
-    <form autocomplete="off" novalidate>
-      <div class="form-group">
-        <label for="firstName">First Name:</label>
-        <input id="firstName" type="text" class="form-control" placeholder="First Name..." />
-      </div>
-      <div class="form-group">
-        <label for="lastName">Last Name:</label>
-        <input id="lastName" type="text" class="form-control" placeholder="Last Name..." />
-      </div>
-
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-default">Cancel</button>
-    </form>
-  </div>
-</div>
-`
+  templateUrl: './profile.component.html'
 })
-
 export class ProfileComponent implements OnInit {
-  constructor() { }
+  profileForm: FormGroup;
+  @Input() firstName: string;
+  @Input() lastName: string;
 
-  ngOnInit() { }
+  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit() {
+    const firstName = new FormControl(this.authService.currentUser.firstName);
+    const lastName = new FormControl(this.authService.currentUser.lastName);
+
+    this.profileForm = new FormGroup({
+      firstName: firstName,
+      lastName: lastName
+    });
+  }
+
+  cancelProfile() {
+    this.router.navigate(['event']);
+  }
+
+  saveProfile(formValues: any) {
+    this.authService.updateCurrentUser(
+      formValues.firstName,
+      formValues.lastName
+    );
+    this.router.navigate(['event']);
+  }
 }
