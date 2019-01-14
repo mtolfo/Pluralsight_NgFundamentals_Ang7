@@ -3,10 +3,16 @@
   <hr />
   <div class="col-md-4">
     <form
-    [formGroup]="profileForm"
-    (ngSubmit)="saveProfile(profileForm.value)"
-    autocomplete="off" novalidate>
-      <div class="form-group">
+      [formGroup]="profileForm"
+      (ngSubmit)="saveProfile(profileForm.value)"
+      autocomplete="off"
+      novalidate
+    >
+      <div class="form-group" [ngClass]="{ error: !validateFirstName() }">
+        <em *ngIf="!validateFirstName() && profileForm.controls.firstName.errors.required"
+        >Required</em>
+        <em *ngIf="!validateFirstName() && profileForm.controls.firstName.errors.pattern"
+        >Must start with a letter</em>
         <label for="firstName">First Name:</label>
         <input
           formControlName="firstName"
@@ -16,7 +22,13 @@
           placeholder="First Name..."
         />
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{ error: !validateLastName() }">
+        <em
+          *ngIf="!validateLastName() && profileForm.controls.lastName.errors.required"
+          >Required</em>
+        <em
+          *ngIf="!validateLastName() && profileForm.controls.lastName.errors.pattern"
+          >Must start with a letter</em>
         <label for="lastName">Last Name:</label>
         <input
           formControlName="lastName"
@@ -27,10 +39,12 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button (click)="cancelProfile()" type="button" class="btn btn-default">
-        Cancel
-      </button>
+      <span>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button (click)="cancelProfile()" type="button" class="btn btn-default">
+          Cancel
+        </button>
+      </span>
     </form>
   </div>
 </div>
